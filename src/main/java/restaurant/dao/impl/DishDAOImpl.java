@@ -55,7 +55,7 @@ public class DishDAOImpl implements DishDAO{
                 + " (p.id, p.name, p.img_url,p.created_at, p.price, p.description) " + " from "//
                 + Dish.class.getName() + " p ";
         if (likeName != null && likeName.length() > 0) {
-            sql += " Where lower(p.name) like :likeName ";
+            sql += " Where lower(p.name) like :likeName and p.del_flag = 0";
         }
         sql += " order by p.created_at desc ";
         //
@@ -73,7 +73,7 @@ public class DishDAOImpl implements DishDAO{
         String sql = "Select new " + DishInfo.class.getName() //
                 + " (p.id, p.name, p.img_url,p.created_at, p.price, p.description) " + " from "//
                 + Dish.class.getName() + " p "
-                + " Where p.dish_directory_id = :dish_directory_id ";
+                + " Where p.dish_directory_id = :dish_directory_id and p.del_flag = 0";
         Session session = sessionFactory.getCurrentSession();
  
         Query query = session.createQuery(sql);

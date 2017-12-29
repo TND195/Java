@@ -26,7 +26,7 @@ public class BranchDAOImpl implements BranchDAO{
     public List<BranchInfo> queryBranch() {
          String sql = "Select new " + BranchInfo.class.getName() //
                 + " ( b.name, b.address) " + " from "//
-                + Branch.class.getName() + " b ";
+                + Branch.class.getName() + " b where b.del_flag = 0";
        Session session = this.sessionFactory.getCurrentSession();
         
         Query query = session.createQuery(sql);

@@ -81,7 +81,7 @@ public class OrderDAOImpl implements OrderDAO {
         String sql = "Select new " + OrderBillInfo.class.getName()//
                 + "(ord.id, ord.orderDate, ord.orderNum, ord.amount, "
                 + " ord.customerName, ord.customerAddress, ord.customerEmail, ord.customerPhone) " + " from "
-                + OrderBill.class.getName() + " ord "//
+                + OrderBill.class.getName() + " ord where p.del_flag = 0"//
                 + " order by ord.orderNum desc";
         Session session = this.sessionFactory.getCurrentSession();
         
