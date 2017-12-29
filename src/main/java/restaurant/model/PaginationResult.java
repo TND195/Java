@@ -60,8 +60,11 @@ public class PaginationResult<E> {
         this.currentPage = pageIndex + 1;
         this.list = results;
         this.maxResult = maxResult;
-
+        if (this.totalRecords % this.maxResult != 0) {
         this.totalPages = (this.totalRecords / this.maxResult) + 1;
+        } else {
+             this.totalPages = (this.totalRecords / this.maxResult);
+        }
         this.maxNavigationPage = maxNavigationPage;
 
         if (maxNavigationPage < totalPages) {
