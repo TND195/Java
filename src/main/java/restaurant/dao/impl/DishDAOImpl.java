@@ -40,7 +40,7 @@ public class DishDAOImpl implements DishDAO{
         if (dish == null) {
             return null;
         }
-        return new DishInfo(dish.getId(), dish.getName(), dish.getImg_url(),dish.getCreated_at(), dish.getPrice());
+        return new DishInfo(dish.getId(), dish.getName(), dish.getImg_url(),dish.getCreated_at(), dish.getPrice(), dish.getDescription());
     }
 
     @Override
@@ -52,7 +52,7 @@ public class DishDAOImpl implements DishDAO{
     public PaginationResult<DishInfo> queryDishs(int page, int maxResult, int maxNavigationPage, String likeName) {
     
         String sql = "Select new " + DishInfo.class.getName() //
-                + " (p.id, p.name, p.img_url,p.created_at, p.price) " + " from "//
+                + " (p.id, p.name, p.img_url,p.created_at, p.price, p.description) " + " from "//
                 + Dish.class.getName() + " p ";
         if (likeName != null && likeName.length() > 0) {
             sql += " Where lower(p.name) like :likeName ";
@@ -71,7 +71,7 @@ public class DishDAOImpl implements DishDAO{
 
     public PaginationResult<DishInfo> queryDishsByDirectory(int page, int maxResult, int maxNavigationPage, int id_directory) {
         String sql = "Select new " + DishInfo.class.getName() //
-                + " (p.id, p.name, p.img_url,p.created_at, p.price) " + " from "//
+                + " (p.id, p.name, p.img_url,p.created_at, p.price, p.description) " + " from "//
                 + Dish.class.getName() + " p "
                 + " Where p.dish_directory_id = :dish_directory_id ";
         Session session = sessionFactory.getCurrentSession();

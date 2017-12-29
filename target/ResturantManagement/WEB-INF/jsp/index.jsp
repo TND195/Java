@@ -36,6 +36,7 @@
                              src="${dishInfo.img_url}" /></li>
                     <li>Code: ${dishInfo.id}</li>
                     <li>Name: ${dishInfo.name}</li>
+                    <li>Description: ${dishInfo.description}</li>
                     <li>Price: <fmt:formatNumber value="${dishInfo.price}" type="currency"/></li>
                     <li><a
                             href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
@@ -47,12 +48,8 @@
          <%
          Integer hitsCount = (Integer)application.getAttribute("hitCounter");
          if( hitsCount ==null || hitsCount == 0 ) {
-            /* First visit */
-            out.println("Welcome to my website!");
             hitsCount = 1;
          } else {
-            /* return visit */
-            out.println("Welcome back to my website!");
             hitsCount += 1;
          }
          application.setAttribute("hitCounter", hitsCount);

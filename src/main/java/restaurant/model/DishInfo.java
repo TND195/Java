@@ -19,16 +19,17 @@ public class DishInfo {
     private String img_url;
     private Date created_at;
     private double price;
-
+    private String description;
     public DishInfo() {
     }
 
-    public DishInfo(int id, String name, String img_url, Date created_at, double price) {
+    public DishInfo(int id, String name, String img_url, Date created_at, double price,String description) {
         this.id = id;
         this.name = name;
         this.img_url = img_url;
         this.created_at = created_at;
         this.price = price;
+        this.description = description;
     }
 
     public DishInfo(Dish dish) {
@@ -37,6 +38,15 @@ public class DishInfo {
         this.img_url = dish.getImg_url();
         this.created_at = dish.getCreated_at();
         this.price = dish.getPrice();
+        this.description = dish.getDescription();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {

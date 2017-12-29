@@ -22,13 +22,15 @@ public class Dish implements Serializable {
 
     private static final long serialVersionUID = -2576670215015463100L;
     private int id;
-    private int branch_id;
     private int dish_directory_id;
     private String name;
     private String img_url;
     private Date created_at;
     private double price;
     private int del_flag;
+    private String description;
+  
+    
 
     @Id
     @Column(name = "id")
@@ -37,10 +39,7 @@ public class Dish implements Serializable {
         return id;
     }
 
-    @Column(name = "branch_id", nullable = false)
-    public int getBranch_id() {
-        return branch_id;
-    }
+ 
 
     @Column(name = "dish_directory_id", nullable = false)
     public int getDish_directory_id() {
@@ -72,13 +71,16 @@ public class Dish implements Serializable {
     public int getDel_flag() {
         return del_flag;
     }
-
-    public void setId(int id) {
-        this.id = id;
+    @Column(name = "description", nullable = false, length = 128)
+    public String getDescription() {
+        return description;
     }
 
-    public void setBranch_id(int branch_id) {
-        this.branch_id = branch_id;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setDish_directory_id(int dish_directory_id) {

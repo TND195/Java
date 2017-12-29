@@ -34,32 +34,36 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
                 + " order by d.dish_id desc";
 
         Session session = this.sessionFactory.getCurrentSession();
-        
+
         Query query = session.createQuery(sql);
 
         List<OrderDetailInfo> details = query.list();
-        
-        for(int i = details.size() -1 ; i >0 ; i--) {
-            if(details.get(i).getDish_id() == details.get(i -1).getDish_id()) {
-                int quantity = details.get(i-1).getQuantity() + details.get(i).getQuantity();
-                details.get(i-1).setQuantity(quantity);
-                details.remove(i);
+        if (!details.isEmpty() && details != null) {
+            for (int i = details.size() - 1; i > 0; i--) {
+                if (details.get(i).getDish_id() == details.get(i - 1).getDish_id()) {
+                    int quantity = details.get(i - 1).getQuantity() + details.get(i).getQuantity();
+                    details.get(i - 1).setQuantity(quantity);
+                    details.remove(i);
+                }
             }
+
+            Collections.sort(details);
+            List<Integer> ids = new ArrayList<Integer>();
+            for (int i = 0; i < details.size(); i++) {
+                ids.add(details.get(i).getDish_id());
+            }
+
+            String sqlDish = "Select new " + DishInfo.class.getName() //
+                    + " (p.id, p.name, p.img_url,p.created_at, p.price, p.description) " + " from "//
+                    + Dish.class.getName() + " p "
+                    + "where p.id in (:ids)";
+            Query queryDish = session.createQuery(sqlDish);
+            queryDish.setParameterList("ids", ids);
+            List<DishInfo> dishs = queryDish.getResultList();
+            return dishs;
+        } else {
+            return null;
         }
-        
-       Collections.sort(details);
-       List<Integer> ids = new ArrayList<Integer>();
-       for(int i=0 ; i<details.size() ; i++) {
-           ids.add(details.get(i).getDish_id());
-       }
-         String sqlDish = "Select new " + DishInfo.class.getName() //
-                + " (p.id, p.name, p.img_url,p.created_at, p.price) " + " from "//
-                + Dish.class.getName() + " p "
-                + "where p.id in (:ids)";
-       Query queryDish = session.createQuery(sqlDish);
-       queryDish.setParameterList("ids", ids);
-       List<DishInfo> dishs = queryDish.getResultList();
-       return dishs;
     }
 
 }
