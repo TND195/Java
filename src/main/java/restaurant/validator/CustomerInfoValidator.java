@@ -16,9 +16,6 @@ import org.springframework.validation.Validator;
 @Component
 public class CustomerInfoValidator implements Validator {
  
-   private EmailValidator emailValidator = EmailValidator.getInstance();
- 
-  
    // Validator này chỉ dùng để kiểm tra class CustomerInfo.
    @Override
    public boolean supports(Class<?> clazz) {

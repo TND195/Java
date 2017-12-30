@@ -61,17 +61,6 @@ public class ApplicationContextConfig {
        return viewResolver;
    }
     
-  
-   // Cấu hình để Upload.
-   @Bean(name = "multipartResolver")
-   public CommonsMultipartResolver multipartResolver() {
-       CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        
-       // Set Max Size...
-       // commonsMultipartResolver.setMaxUploadSize(...);
-        
-       return commonsMultipartResolver;
-   }
  
    @Bean(name = "dataSource")
    public DataSource getDataSource() {

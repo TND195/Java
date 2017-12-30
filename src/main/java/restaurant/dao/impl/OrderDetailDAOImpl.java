@@ -58,7 +58,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
             String sqlDish = "Select new " + DishInfo.class.getName() //
                     + " (p.id, p.name, p.img_url,p.created_at, p.price, p.description) " + " from "//
                     + Dish.class.getName() + " p "
-                    + "where p.id in (:ids) and p.del_flag = 0 ORDER BY FIND_IN_SET(id, ':ids')"
+                    + "where p.id in (:ids) and p.del_flag = 0"
 ;            Query queryDish = session.createQuery(sqlDish);
             queryDish.setParameterList("ids", ids);
             List<DishInfo> dishs = queryDish.getResultList();
