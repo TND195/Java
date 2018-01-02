@@ -16,19 +16,15 @@ public class OrderDetailInfo implements Comparable<OrderDetailInfo>{
     private int id;
     private int dish_id;
     private int quantity;
-    private double amount;
     private double price;
     private Date created_at;
-    private String dish_name;
 
-    public OrderDetailInfo(int id, int dish_id, int quantity, double amount, double price, Date created_at, String dish_name) {
-        this.id = id;
+
+    public OrderDetailInfo( int dish_id, int quantity, double price) {
         this.dish_id = dish_id;
         this.quantity = quantity;
-        this.amount = amount;
         this.price = price;
-        this.created_at = created_at;
-        this.dish_name = dish_name;
+
     }
 
     public OrderDetailInfo(int dish_id, int quantity) {
@@ -48,9 +44,7 @@ public class OrderDetailInfo implements Comparable<OrderDetailInfo>{
         return quantity;
     }
 
-    public double getAmount() {
-        return amount;
-    }
+ 
 
     public double getPrice() {
         return price;
@@ -60,9 +54,7 @@ public class OrderDetailInfo implements Comparable<OrderDetailInfo>{
         return created_at;
     }
 
-    public String getDish_name() {
-        return dish_name;
-    }
+  
 
     public void setId(int id) {
         this.id = id;
@@ -76,9 +68,7 @@ public class OrderDetailInfo implements Comparable<OrderDetailInfo>{
         this.quantity = quantity;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+    
 
     public void setPrice(double price) {
         this.price = price;
@@ -86,10 +76,6 @@ public class OrderDetailInfo implements Comparable<OrderDetailInfo>{
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
-    }
-
-    public void setDish_name(String dish_name) {
-        this.dish_name = dish_name;
     }
 
     public int compareTo(OrderDetailInfo o) {

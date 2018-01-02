@@ -12,7 +12,7 @@ import restaurant.model.CartInfo;
  *
  * @author Admin
  */
-public class Utils {
+public class SessionUtils {
        // Thông tin các mặt hàng đã mua, được lưu trữ trong Session.
    public static CartInfo getCartInSession(HttpServletRequest request) {
  

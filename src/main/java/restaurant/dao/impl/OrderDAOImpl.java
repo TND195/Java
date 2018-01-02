@@ -36,7 +36,7 @@ public class OrderDAOImpl implements OrderDAO {
    
     
     @Override
-    public void saveOrder(CartInfo cartInfo) {
+    public int saveOrder(CartInfo cartInfo) {
         Session session = sessionFactory.getCurrentSession();
         
         OrderBill order = new OrderBill();
@@ -74,6 +74,7 @@ public class OrderDAOImpl implements OrderDAO {
             
             session.save(detail);
         } 
+        return order.getId();
     }
     
     @Override
@@ -100,6 +101,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public OrderBillInfo getOrderInfo(int orderId) {
         OrderBill order = this.findOrder(orderId);
+
         if (order == null) {
             return null;
         }

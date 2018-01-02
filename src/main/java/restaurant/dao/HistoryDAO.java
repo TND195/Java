@@ -6,14 +6,12 @@
 package restaurant.dao;
 
 import java.util.List;
-import restaurant.model.DishInfo;
-import restaurant.model.OrderDetailInfo;
+import restaurant.model.HistoryInfo;
 
 /**
  *
  * @author Admin
  */
-public interface OrderDetailDAO {
-    public List<DishInfo> getListTopSell();
-     public List<OrderDetailInfo> getlist(int orderid);
+public interface HistoryDAO {
+    public List<HistoryInfo> getListHistory(List<Integer> ids);
 }

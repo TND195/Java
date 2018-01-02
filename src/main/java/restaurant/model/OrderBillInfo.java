@@ -19,33 +19,21 @@ public class OrderBillInfo {
     private int oder_type;
     private double sum_money;
     private Date created_at;  
-    private int order_num;
     
     private List<OrderDetailInfo> details;
 
     public OrderBillInfo() {
     }
 
-    public OrderBillInfo(int id, int customer_id, int status, int oder_type, double sum_money, Date created_at, int order_num, List<OrderDetailInfo> details) {
-        this.id = id;
+    public OrderBillInfo( int customer_id, int status, int oder_type, double sum_money, Date created_at, List<OrderDetailInfo> details) {
         this.customer_id = customer_id;
         this.status = status;
         this.oder_type = oder_type;
         this.sum_money = sum_money;
         this.created_at = created_at;
-        this.order_num = order_num;
+
         this.details = details;
     }
-
-    public int getOrder_num() {
-        return order_num;
-    }
-
-    public void setOrder_num(int order_num) {
-        this.order_num = order_num;
-    }
-
-   
 
     public int getId() {
         return id;

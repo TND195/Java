@@ -28,8 +28,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import restaurant.dao.BranchDAO;
+import restaurant.dao.HistoryDAO;
 import restaurant.dao.OrderDetailDAO;
 import restaurant.dao.impl.BranchDAOImpl;
+import restaurant.dao.impl.HistoryDAOImpl;
 import restaurant.dao.impl.OrderDetailDAOImpl;
  
 @Configuration
@@ -130,5 +132,8 @@ public class ApplicationContextConfig {
    public OrderDetailDAO getOrderDetailDAO() {
        return new OrderDetailDAOImpl();
    }
-    
+   @Bean(name = "historyDAO")
+   public HistoryDAO getHistoryDAO() {
+       return new HistoryDAOImpl();
+   }
 }

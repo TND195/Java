@@ -5,11 +5,14 @@
  */
 package restaurant.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.Cookie;
 import restaurant.dao.DishDAO;
 import restaurant.dao.OrderDAO;
 import restaurant.entity.Dish;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import restaurant.model.CartInfo;
 import restaurant.model.CustomerInfo;
 import restaurant.model.DishInfo;
@@ -30,9 +33,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import restaurant.dao.BranchDAO;
+import restaurant.dao.HistoryDAO;
 import restaurant.dao.OrderDetailDAO;
 import restaurant.model.BranchInfo;
-import restaurant.util.Utils;
+import restaurant.model.HistoryInfo;
+import restaurant.util.SessionUtils;
 
 @Controller
 // Cần thiết cho Hibernate Transaction.
@@ -46,15 +51,18 @@ public class MainController {
 
     @Autowired
     private DishDAO dishDAO;
-    
+
     @Autowired
     private OrderDetailDAO orderDetailDAO;
-    
+
     @Autowired
     private BranchDAO branchDAO;
 
     @Autowired
     private CustomerInfoValidator customerInfoValidator;
+    
+    @Autowired
+    private HistoryDAO historyDAO;
 
     @InitBinder
     public void myInitBinder(WebDataBinder dataBinder) {
@@ -85,17 +93,17 @@ public class MainController {
     @RequestMapping("/")
     public String home(Model model) {
         List<DishInfo> dish = orderDetailDAO.getListTopSell();
-        model.addAttribute("listDish",dish);
+        model.addAttribute("listDish", dish);
         return "index";
     }
-    
+
     @RequestMapping("/branch")
     public String branch(Model model) {
         List<BranchInfo> branch = branchDAO.queryBranch();
         model.addAttribute("listBranch", branch);
         return "branch";
     }
-    
+
     // Danh sách sản phẩm.
     @RequestMapping({"/productList"})
     public String listProductHandler(Model model, //
@@ -121,7 +129,7 @@ public class MainController {
         if (dish != null) {
 
             // Thông tin giỏ hàng có thể đã lưu vào trong Session trước đó.
-            CartInfo cartInfo = Utils.getCartInSession(request);
+            CartInfo cartInfo = SessionUtils.getCartInSession(request);
 
             DishInfo productInfo = new DishInfo(dish);
 
@@ -142,7 +150,7 @@ public class MainController {
         if (dish != null) {
 
             // Thông tin giỏ hàng có thể đã lưu vào trong Session trước đó.
-            CartInfo cartInfo = Utils.getCartInSession(request);
+            CartInfo cartInfo = SessionUtils.getCartInSession(request);
 
             DishInfo dishInfo = new DishInfo(dish);
 
@@ -160,7 +168,7 @@ public class MainController {
             Model model, //
             @ModelAttribute("cartForm") CartInfo cartForm) {
 
-        CartInfo cartInfo = Utils.getCartInSession(request);
+        CartInfo cartInfo = SessionUtils.getCartInSession(request);
         cartInfo.updateQuantity(cartForm);
 
         // Chuyển sang trang danh sách các sản phẩm đã mua.
@@ -170,7 +178,7 @@ public class MainController {
     // GET: Hiển thị giỏ hàng.
     @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.GET)
     public String shoppingCartHandler(HttpServletRequest request, Model model) {
-        CartInfo myCart = Utils.getCartInSession(request);
+        CartInfo myCart = SessionUtils.getCartInSession(request);
 
         model.addAttribute("cartForm", myCart);
         return "shoppingCart";
@@ -180,7 +188,7 @@ public class MainController {
     @RequestMapping(value = {"/shoppingCartCustomer"}, method = RequestMethod.GET)
     public String shoppingCartCustomerForm(HttpServletRequest request, Model model) {
 
-        CartInfo cartInfo = Utils.getCartInSession(request);
+        CartInfo cartInfo = SessionUtils.getCartInSession(request);
 
         // Chưa mua mặt hàng nào.
         if (cartInfo.isEmpty()) {
@@ -216,7 +224,7 @@ public class MainController {
         }
 
         customerForm.setValid(true);
-        CartInfo cartInfo = Utils.getCartInSession(request);
+        CartInfo cartInfo = SessionUtils.getCartInSession(request);
 
         cartInfo.setCustomerInfo(customerForm);
 
@@ -227,7 +235,7 @@ public class MainController {
     // GET: Xem lại thông tin để xác nhận.
     @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.GET)
     public String shoppingCartConfirmationReview(HttpServletRequest request, Model model) {
-        CartInfo cartInfo = Utils.getCartInSession(request);
+        CartInfo cartInfo = SessionUtils.getCartInSession(request);
 
         // Chưa mua mặt hàng nào.
         if (cartInfo.isEmpty()) {
@@ -244,9 +252,9 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/shoppingCartConfirmation"}, method = RequestMethod.POST)
-    public String shoppingCartConfirmationSave(HttpServletRequest request, Model model) {
-        CartInfo cartInfo = Utils.getCartInSession(request);
-
+    public String shoppingCartConfirmationSave(HttpServletRequest request, HttpServletResponse response, Model model) {
+        CartInfo cartInfo = SessionUtils.getCartInSession(request);
+        int orderid = 0;
         // Chưa mua mặt hàng nào.
         if (cartInfo.isEmpty()) {
 
@@ -258,7 +266,7 @@ public class MainController {
             return "redirect:/shoppingCartCustomer";
         }
         try {
-            orderDAO.saveOrder(cartInfo);
+            orderid = orderDAO.saveOrder(cartInfo);
         } catch (Exception e) {
 
             // Cần thiết: Propagation.NEVER?
@@ -266,10 +274,15 @@ public class MainController {
         }
 
         // Xóa rỏ hàng khỏi session.
-        Utils.removeCartInSession(request);
+        SessionUtils.removeCartInSession(request);
 
         // Lưu thông tin đơn hàng đã xác nhận mua.
-        Utils.storeLastOrderedCartInSession(request, cartInfo);
+        SessionUtils.storeLastOrderedCartInSession(request, cartInfo);
+
+        if (orderid != 0) {
+            Cookie cookie = new Cookie("idorder" + orderid, String.valueOf(orderid));
+            response.addCookie(cookie);
+        }
 
         // Chuyến hướng tới trang hoàn thành mua hàng.
         return "redirect:/shoppingCartFinalize";
@@ -278,12 +291,30 @@ public class MainController {
     @RequestMapping(value = {"/shoppingCartFinalize"}, method = RequestMethod.GET)
     public String shoppingCartFinalize(HttpServletRequest request, Model model) {
 
-        CartInfo lastOrderedCart = Utils.getLastOrderedCartInSession(request);
+        CartInfo lastOrderedCart = SessionUtils.getLastOrderedCartInSession(request);
 
         if (lastOrderedCart == null) {
             return "redirect:/shoppingCart";
         }
 
         return "shoppingCartFinalize";
+    }
+
+    @RequestMapping(value = {"/history"}, method = RequestMethod.GET)
+    public String historyCart(HttpServletRequest request, Model model) {
+        List<HistoryInfo> list =null;
+        
+        Cookie cookies[] = request.getCookies();
+       List<Integer> ids = new ArrayList<Integer>();
+        for (Cookie cookie : cookies) {
+            if(!cookie.getName().equals("JSESSIONID")) {
+                ids.add(Integer.parseInt(cookie.getValue()));
+            }
+        }
+        list = historyDAO.getListHistory(ids);
+
+      
+        model.addAttribute("listHistory", list);
+        return "history";
     }
 }

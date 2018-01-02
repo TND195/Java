@@ -67,5 +67,16 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
             return null;
         }
     }
+    public List<OrderDetailInfo> getlist(int orderid) {
+          String sql = "Select new " + OrderDetailInfo.class.getName()//
+                + "(ord.dish_id, ord.quantity, ord.price) " + " from "
+                + OrderDetail.class.getName() + " ord where ord.del_flag = 0 and ord.order_id = :orderid";
+        Session session = this.sessionFactory.getCurrentSession();
+        
+        Query query = session.createQuery(sql);
+        query.setParameter("orderid", orderid);
+        
+        return query.list();
+    }
 
 }

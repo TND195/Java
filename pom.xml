@@ -17,7 +17,7 @@
     </properties>
     
     <dependencies>
-            <dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
@@ -51,13 +51,13 @@
             <scope>provided</scope>
         </dependency>
          
-       <!-- Apache Commons FileUpload -->
-       <!-- http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-       <dependency>
-           <groupId>commons-fileupload</groupId>
-           <artifactId>commons-fileupload</artifactId>
-           <version>1.3.1</version>
-       </dependency>        
+        <!-- Apache Commons FileUpload -->
+        <!-- http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>        
  
         <!-- Spring dependencies -->
         <!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
@@ -88,7 +88,7 @@
             <version>4.3.0.RELEASE</version>
         </dependency>
  
-    <!-- Spring Security Artifacts - START -->
+        <!-- Spring Security Artifacts - START -->
         <!-- http://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -162,11 +162,11 @@
             <artifactId>commons-validator</artifactId>
             <version>1.5.0</version>
         </dependency>
- 
+      
     </dependencies>
 
     <build>
-     <finalName>ResturantManagement</finalName>
+        <finalName>ResturantManagement</finalName>
     </build>
 
 </project>

@@ -17,7 +17,7 @@ import restaurant.model.PaginationResult;
  * @author Admin
  */
 public interface OrderDAO {
-     public void saveOrder(CartInfo cartInfo);
+     public int saveOrder(CartInfo cartInfo);
  
     public PaginationResult<OrderBillInfo> listOrderInfo(int page,
             int maxResult, int maxNavigationPage);
