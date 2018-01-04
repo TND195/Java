@@ -37,10 +37,10 @@
                     <img class="product-image" style="width:170px;height:170px;margin-right:20px; float: left;"
                              src="${dishInfo.img_url}" />
                        <ul>
-                    <li>Code: ${dishInfo.id}</li>
-                    <li>Name: ${dishInfo.name}</li>
-                    <li>Description: ${dishInfo.description}</li>
-                    <li>Price: <fmt:formatNumber value="${dishInfo.price}" type="currency"/></li>
+                    <li>Mã: ${dishInfo.id}</li>
+                                            <li>Tên: ${dishInfo.name}</li>
+                                            <li>Mô tả: ${dishInfo.description}</li>
+                                            <li>Giá: <fmt:formatNumber value="${dishInfo.price}" type="currency"/></li>
                     <li><a
                             href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
                             Buy Now</a></li>

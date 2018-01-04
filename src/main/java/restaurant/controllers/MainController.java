@@ -85,11 +85,10 @@ public class MainController {
 
     }
 
-    @RequestMapping("/403")
-    public String accessDenied() {
-        return "/403";
+@RequestMapping("/info")
+    public String info() {
+        return "/info";
     }
-
     @RequestMapping("/")
     public String home(Model model,
             @RequestParam(value = "name", defaultValue = "") String likeName,

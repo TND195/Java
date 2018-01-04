@@ -52,6 +52,9 @@
                         <li><a href="${pageContext.request.contextPath}/branch">
                                 Chi Nhánh
                             </a></li>
+                            <li><a href="${pageContext.request.contextPath}/info">
+                                giới thiệu
+                            </a></li>
                     </ul>
                                    <form class="form-inline col-md-4 col-lg-4 col-md-offset-4  col-lg-offset-4">
       <input id="search" class="form-control col-md-2 col-lg-2 " type="text" placeholder="Search">
