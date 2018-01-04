@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
- 
+ <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +15,24 @@
  
 <title>Shopping Cart</title>
  
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles.css">
- 
 </head>
 <body>
    <jsp:include page="_header.jsp" />
-  
-   <jsp:include page="_menu.jsp" />
-  
-   <fmt:setLocale value="en_US" scope="session"/>
  
-   <div class="page-title">My Cart</div>
  
+
+ <div class="container">
+    <div class="row">
+        <div class="panel panel-default">
+	<!-- Default panel contents -->
+	<div class="panel-heading">Giỏ hàng</div>
+
+	<!-- Table -->
+	<table class="table">
+		<thead>
+		</thead>
+		<tbody>
+                  
    <c:if test="${empty cartForm or empty cartForm.cartLines}">
        <h2>There is no items in Cart</h2>
        <a href="${pageContext.request.contextPath}/productList">Show
@@ -39,11 +45,12 @@
  
            <c:forEach items="${cartForm.cartLines}" var="cartLineInfo"
                varStatus="varStatus">
-               <div class="product-preview-container">
-                   <ul>
-                       <li><img class="product-image"
-                           src="${cartLineInfo.dishInfo.img_url}" />
-                       </li>
+                <tr>
+               <td>
+                
+                       <img class="product-image" style="width:170px;height:170px;margin-right:20px; float: left;"
+                             src="${cartLineInfo.dishInfo.img_url}" />
+   <ul>
                        <li>Id: ${cartLineInfo.dishInfo.id} <form:hidden
                                path="cartLines[${varStatus.index}].dishInfo.id" />
  
@@ -53,8 +60,8 @@
                       
                          <fmt:formatNumber value="${cartLineInfo.dishInfo.price}" type="currency"/>
                         
-                       </span></li>
-                       <li>Quantity: <form:input
+                       </span></li
+                       <li>Quantity: <form:input 
                                path="cartLines[${varStatus.index}].quantity" /></li>
                        <li>Subtotal:
                          <span class="subtotal">
@@ -67,21 +74,26 @@
                            href="${pageContext.request.contextPath}/shoppingCartRemoveProduct?id=${cartLineInfo.dishInfo.id}">
                                Delete </a></li>
                    </ul>
-               </div>
+                                </tr>
+               </td>  
            </c:forEach>
-           <div style="clear: both"></div>
-           <input class="button-update-sc" type="submit" value="Update Quantity" />
+                  
+                    <td>
+           <input class="btn btn-primary" type="submit" value="Cập nhật" />
            <a class="navi-item"
-               href="${pageContext.request.contextPath}/shoppingCartCustomer">Enter
-               Customer Info</a>
+               href="${pageContext.request.contextPath}/shoppingCartCustomer">Điền thông tin</a>
+               | 
            <a class="navi-item"
-               href="${pageContext.request.contextPath}/productList">Continue
-               Buy</a>
+               href="${pageContext.request.contextPath}/productList">Tiếp tục mua hàng</a>
+                    </td>
+               </tr>
        </form:form>
  
  
    </c:if>
- 
+ </tbody>
+	</table>
+</div>
  
    <jsp:include page="_footer.jsp" />
  

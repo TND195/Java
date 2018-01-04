@@ -8,10 +8,14 @@
     pageEncoding="UTF-8"%>
  
  
-<div class="footer-container">
- 
-<a>demo</a>
-       <%
+
+      
+       
+
+<div class="panel panel-default">
+	<div class="panel-footer">
+            Hotline: 01629214093
+		 <%
          Integer hitsCount = (Integer)application.getAttribute("hitCounter");
          if( hitsCount ==null || hitsCount == 0 ) {
             hitsCount = 1;
@@ -20,8 +24,9 @@
          }
          application.setAttribute("hitCounter", hitsCount);
       %>
+      
       <center>
-         <p>Total number of visits: <%= hitsCount%></p>
+         <p>Số lượng truy cập: <%= hitsCount%></p>
       </center>
-        <div class="fb-like" data-href="https://www.facebook.com/&#x110;&#x1ed3;-&#x103;n-137279583619818/" data-width="12" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+	</div>
 </div>
