@@ -14,7 +14,7 @@
     <head>
         <meta charset="UTF-8">
 
-        <title>Quán ăn</title>
+        <title>Thông tin Quán ăn</title>
 
 
     </head>
@@ -30,8 +30,6 @@
 
                     <!-- Table -->
                     <table class="table">
-                        <thead>
-                        </thead>
                         <tbody>
                             <tr>
                                 <td>Trang web bán đồ ăn online</td>

@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
  
-<title>Shopping Cart</title>
+<title>Giỏ hàng</title>
  
 </head>
 <body>
@@ -29,14 +29,12 @@
 
 	<!-- Table -->
 	<table class="table">
-		<thead>
-		</thead>
+
 		<tbody>
                   
    <c:if test="${empty cartForm or empty cartForm.cartLines}">
-       <h2>There is no items in Cart</h2>
-       <a href="${pageContext.request.contextPath}/productList">Show
-           Product List</a>
+       <h2>Giỏ hàng trống</h2>
+       <a href="${pageContext.request.contextPath}/productList">Xem danh sách sản phẩm</a>
    </c:if>
  
    <c:if test="${not empty cartForm and not empty cartForm.cartLines   }">
@@ -55,20 +53,15 @@
                                path="cartLines[${varStatus.index}].dishInfo.id" />
  
                        </li>
-                       <li>Name: ${cartLineInfo.dishInfo.name}</li>
-                       <li>Price: <span class="price">
-                      
-                         <fmt:formatNumber value="${cartLineInfo.dishInfo.price}" type="currency"/>
-                        
-                       </span></li
-                       <li>Quantity: <form:input 
-                               path="cartLines[${varStatus.index}].quantity" /></li>
-                       <li>Subtotal:
-                         <span class="subtotal">
-                        
-                            <fmt:formatNumber value="${cartLineInfo.amount}" type="currency"/>
-                      
-                         </span>
+                       <li>Tên: ${cartLineInfo.dishInfo.name}</li>
+                       <li>Giá: 
+                       <fmt:formatNumber value="${cartLineInfo.dishInfo.price}" type = "number" maxFractionDigits = "3"/> VND
+                        </li>
+                       <li>Số lượng: <form:input 
+                               path="cartLines[${varStatus.index}].quantity" />
+                        <form:errors path="cartLines[${varStatus.index}].quantity" /></li>
+                       <li>Tổng:
+   <fmt:formatNumber value="${cartLineInfo.amount}" type = "number" maxFractionDigits = "3"/> VND
                        </li>
                        <li><a
                            href="${pageContext.request.contextPath}/shoppingCartRemoveProduct?id=${cartLineInfo.dishInfo.id}">

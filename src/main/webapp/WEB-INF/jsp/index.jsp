@@ -29,8 +29,7 @@
 
                     <!-- Table -->
                     <table class="table">
-                        <thead>
-                        </thead>
+                   
                         <tbody>
                             <c:forEach items="${listDish}" var="dishInfo">
                                 <tr>
@@ -42,10 +41,11 @@
                                             <li>Mã: ${dishInfo.id}</li>
                                             <li>Tên: ${dishInfo.name}</li>
                                             <li>Mô tả: ${dishInfo.description}</li>
-                                            <li>Giá: <fmt:formatNumber value="${dishInfo.price}" type="currency"/></li>
+                                            <li>Giá: <fmt:formatNumber value="${dishInfo.price}" type = "number" 
+         maxFractionDigits = "3"/> VND</li>
                                             <li><a
                                                     href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
-                                                    Buy Now</a></li>
+                                                    Mua ngay</a></li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -63,8 +63,6 @@
 
                             <!-- Table -->
                             <table class="table">
-                                <thead>
-                                </thead>
                                 <tbody>
                                     <tr>
                                         <td>
@@ -76,13 +74,14 @@
                                                             <img class="product-image" style="width:170px;height:170px;margin-right:20px; float: left;"
                                                                  src="${dishInfo.img_url}" />
                                                             <ul>
-                                                                <li>Code: ${dishInfo.id}</li>
-                                                                <li>Name: ${dishInfo.name}</li>
-                                                                <li>Description: ${dishInfo.description}</li>
-                                                                <li>Price: <fmt:formatNumber value="${dishInfo.price}" type="currency"/></li>
+                                                                <li>Mã: ${dishInfo.id}</li>
+                                                                <li>Tên: ${dishInfo.name}</li>
+                                                                <li>Mô tả: ${dishInfo.description}</li>
+                                                                <li>Giá: <fmt:formatNumber value="${dishInfo.price}" type = "number" 
+         maxFractionDigits = "3"/> VND</li>
                                                                 <li><a
                                                                         href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
-                                                                        Buy Now</a></li>
+                                                                        Mua ngay</a></li>
                                                             </ul>
                                                         </td>
 
@@ -98,9 +97,18 @@
                                                 <c:if test="${paginationDish.totalPages > 1}">
 
                                                     <c:forEach items="${paginationDish.navigationPages}" var = "page">
-                                                        <li class="page-item">
+                                                                <c:choose>
+                                                                    <c:when test="${page == param.page || (empty param.page && page ==1)}">
+                                                                        
+                                                                         <li class="page-item active">
+                                                                    </c:when>    
+                                                                    <c:otherwise>
+                                                                      <li class="page-item">
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                        
                                                             <c:if test="${page != -1 }">
-                                                                <a href="productList?page=${page}" class="nav-item">${page}</a>
+                                                                <a href="?page=${page}" class="nav-item">${page}</a>
                                                             </c:if>
                                                             <c:if test="${page == -1 }">
                                                                 <span class="nav-item"> ... </span>

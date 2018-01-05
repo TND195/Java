@@ -27,7 +27,7 @@ public class HistoryDAOImpl implements HistoryDAO{
        if (ids.size() !=0) {
        for(int i=0;i<ids.size();i++) {
            List<OrderDetailInfo> listo = orderDetailDAO.getlist(ids.get(i));
-           HistoryInfo historyInfo = new HistoryInfo(listo, ids.get(i));
+           HistoryInfo historyInfo = new HistoryInfo(listo, ids.get(i),listo.get(0).getCreated_at());
            list.add(historyInfo);
        }
        return list;

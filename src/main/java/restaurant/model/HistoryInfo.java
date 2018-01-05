@@ -5,6 +5,7 @@
  */
 package restaurant.model;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,10 +15,13 @@ import java.util.List;
 public class HistoryInfo {
     private List<OrderDetailInfo> orderDetailInfos;
     private int id;
+    private Date create_at;
+    
 
-    public HistoryInfo(List<OrderDetailInfo> orderDetailInfos, int id) {
+    public HistoryInfo(List<OrderDetailInfo> orderDetailInfos, int id, Date create_at) {
         this.orderDetailInfos = orderDetailInfos;
         this.id = id;
+        this.create_at = create_at;
     }
 
     public List<OrderDetailInfo> getOrderDetailInfos() {
@@ -36,6 +40,14 @@ public class HistoryInfo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getCreate_at() {
+        return create_at;
+    }
+
+    public void setCreate_at(Date create_at) {
+        this.create_at = create_at;
     }
     
 }

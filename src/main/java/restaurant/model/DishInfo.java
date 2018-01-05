@@ -20,6 +20,7 @@ public class DishInfo {
     private Date created_at;
     private double price;
     private String description;
+    
     public DishInfo() {
     }
 

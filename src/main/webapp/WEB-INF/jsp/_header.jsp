@@ -9,7 +9,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
     <meta charset="UTF-8">
-    <title>Bootstrap 3 Navigation</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -53,12 +52,15 @@
                                 Chi Nhánh
                             </a></li>
                             <li><a href="${pageContext.request.contextPath}/info">
-                                giới thiệu
+                                Giới thiệu
+                            </a></li>
+                            <li><a href="${pageContext.request.contextPath}/history">
+                                Lịch sử
                             </a></li>
                     </ul>
-                                   <form class="form-inline col-md-4 col-lg-4 col-md-offset-4  col-lg-offset-4">
-      <input id="search" class="form-control col-md-2 col-lg-2 " type="text" placeholder="Search">
-      <input type="button" onclick="myFunction()" class="btn btn-secondary col-md-2 col-lg-2" value="Search">
+                                   <form class="form-inline">
+      <input id="search" class="form-control" type="text" placeholder="Search">
+      <input type="button" onclick="myFunction()" class="btn btn-secondary" value="Search">
     </form>
                 </div>
             </nav>

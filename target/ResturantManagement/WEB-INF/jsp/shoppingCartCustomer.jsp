@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
  
-<title>Enter Customer Information</title>
+<title>Thông tin khách hàng</title>
  
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles.css">
  
@@ -42,7 +42,7 @@
        <form:input path="address" class="form-control" />
       <form:errors path="address" class="error-message" />
     </div>
-    <button type="submit" class="btn btn-primary" style="margin-bottom: 15px">Submit</button>
+    <button type="submit" class="btn btn-primary" style="margin-bottom: 15px">Đồng ý</button>
   </fieldset>
   </form:form>
         </div>

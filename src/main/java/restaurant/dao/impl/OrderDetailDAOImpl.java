@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import restaurant.dao.DishDAO;
 import restaurant.dao.OrderDetailDAO;
 import restaurant.entity.Dish;
 import restaurant.entity.OrderDetail;
@@ -26,6 +27,9 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
+    
+    @Autowired
+    private DishDAO dishDAO;
 
     public List<DishInfo> getListTopSell() {
         String sql = "Select new " + OrderDetailInfo.class.getName() //
@@ -69,14 +73,21 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     }
     public List<OrderDetailInfo> getlist(int orderid) {
           String sql = "Select new " + OrderDetailInfo.class.getName()//
-                + "(ord.dish_id, ord.quantity, ord.price) " + " from "
+                + "(ord.dish_id, ord.quantity, ord.price, ord.created_at) " + " from "
                 + OrderDetail.class.getName() + " ord where ord.del_flag = 0 and ord.order_id = :orderid";
         Session session = this.sessionFactory.getCurrentSession();
         
         Query query = session.createQuery(sql);
         query.setParameter("orderid", orderid);
-        
-        return query.list();
+        List<OrderDetailInfo> orderDetailInfos = query.list();
+        for (OrderDetailInfo orderDetailInfo : orderDetailInfos) {
+            DishInfo findDishInfo = dishDAO.findDishInfo(orderDetailInfo.getDish_id());
+            orderDetailInfo.setDish_img_url(findDishInfo.getImg_url());
+            orderDetailInfo.setDish_name(findDishInfo.getName());
+            orderDetailInfo.setDish_price(findDishInfo.getPrice());
+            orderDetailInfo.setDish_description(findDishInfo.getDescription());
+        }
+        return orderDetailInfos;
     }
 
 }

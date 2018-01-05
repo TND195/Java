@@ -13,7 +13,7 @@
     <head>
         <meta charset="UTF-8">
 
-        <title>Quán ăn</title>
+        <title>Chi nhánh</title>
 
 
     </head>
@@ -30,8 +30,6 @@
 
                     <!-- Table -->
                     <table class="table">
-                        <thead>
-                        </thead>
                         <tbody>
 
                             <c:forEach items="${listBranch}" var="branchInfo">

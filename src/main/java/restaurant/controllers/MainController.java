@@ -175,8 +175,15 @@ public class MainController {
     @RequestMapping(value = {"/shoppingCart"}, method = RequestMethod.POST)
     public String shoppingCartUpdateQty(HttpServletRequest request, //
             Model model, //
-            @ModelAttribute("cartForm") CartInfo cartForm) {
+            @ModelAttribute("cartForm") CartInfo cartForm , BindingResult result) {
 
+         // Kết quả Validate CustomerInfo.
+        if (result.hasErrors()) {
+            
+            return "shoppingCart";
+        }
+
+    
         CartInfo cartInfo = SessionUtils.getCartInSession(request);
         cartInfo.updateQuantity(cartForm);
 
@@ -289,7 +296,7 @@ public class MainController {
         SessionUtils.storeLastOrderedCartInSession(request, cartInfo);
 
         if (orderid != 0) {
-            Cookie cookie = new Cookie("idorder" + orderid, String.valueOf(orderid));
+            Cookie cookie = new Cookie("order" + orderid, String.valueOf(orderid));
             response.addCookie(cookie);
         }
 
@@ -316,7 +323,7 @@ public class MainController {
         Cookie cookies[] = request.getCookies();
        List<Integer> ids = new ArrayList<Integer>();
         for (Cookie cookie : cookies) {
-            if(!cookie.getName().equals("JSESSIONID")) {
+            if(cookie.getName().contains("order")) {
                 ids.add(Integer.parseInt(cookie.getValue()));
             }
         }

@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
 
-        <title>Shopping Cart Confirmation</title>
+        <title>Xác nhận đơn hàng</title>
 
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles.css">
 
@@ -21,8 +21,6 @@
                     <div class="panel-heading">Thông tin khách hàng</div>
 
                     <table class="table">
-                        <thead>
-                        </thead>
                         <tbody>
 
                             <tr>
@@ -44,9 +42,9 @@
                                     <ul>
                                         <li>Quantity: ${myCart.quantityTotal}</li>
                                         <li>Total:
-                                            <span class="total">
-                                                <fmt:formatNumber value="${myCart.amountTotal}" type="currency"/>
-                                            </span></li>
+                                           
+                                                <fmt:formatNumber value="${myCart.amountTotal}" type = "number" maxFractionDigits = "3"/> VND
+                                            </li>
                                     </ul>
                                 </td>
 </tr>
@@ -105,7 +103,7 @@
                        href="${pageContext.request.contextPath}/shoppingCartCustomer">Chỉnh sửa thông tin</a>
 
                     <!-- Send/Save -->
-                    <input type="submit" value="Send" class="btn btn-primary" />
+                    <input type="submit" value="Gửi" class="btn btn-primary" />
                 </form>
                            <jsp:include page="_footer.jsp" />
             </div>
