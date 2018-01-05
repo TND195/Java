@@ -65,8 +65,8 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
                     + "where p.id in (:ids) and p.del_flag = 0";
             Query queryDish = session.createQuery(sqlDish);
             queryDish.setParameterList("ids", ids);
-            List<DishInfo> dishs = queryDish.getResultList();
-            return dishs;
+           return   queryDish.getResultList();
+             
         } else {
             return null;
         }

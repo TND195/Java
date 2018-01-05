@@ -70,9 +70,12 @@
                                                             <li class="page-item">
                                                             </c:otherwise>
                                                         </c:choose>
-                                                        <c:if test="${page != -1 }">
-                                                            <a href="productList?page=${page}" class="nav-item">${page}</a>
-                                                        </c:if>
+                                                        <c:if test="${page != -1 && empty param.name }">
+                                                                <a href="?page=${page}" class="nav-item">${page}</a>
+                                                            </c:if>
+                                                            <c:if test="${page != -1 && not empty param.name }">
+                                                                <a href="?page=${page}&name=${param.name}" class="nav-item">${page}</a>
+                                                            </c:if>
                                                         <c:if test="${page == -1 }">
                                                             <span class="nav-item"> ... </span>
                                                         </c:if>

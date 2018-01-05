@@ -107,7 +107,7 @@
                                                                     </c:otherwise>
                                                                 </c:choose>
                                                         
-                                                            <c:if test="${page != -1 }">
+                                                           <c:if test="${page != -1}">
                                                                 <a href="?page=${page}" class="nav-item">${page}</a>
                                                             </c:if>
                                                             <c:if test="${page == -1 }">

@@ -60,7 +60,7 @@
                     </ul>
                                    <form class="form-inline">
       <input id="search" class="form-control" type="text" placeholder="Search">
-      <input type="button" onclick="myFunction()" class="btn btn-secondary" value="Search">
+      <input type="button" onclick="myFunction()"  class="btn btn-secondary" value="Search">
     </form>
                 </div>
             </nav>

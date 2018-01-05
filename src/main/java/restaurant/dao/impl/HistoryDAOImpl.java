@@ -32,7 +32,7 @@ public class HistoryDAOImpl implements HistoryDAO{
            
            List<OrderDetailInfo> listo = orderDetailDAO.getlist(ids.get(i));
            OrderBillInfo orderBillInfo = orderDAO.getOrderInfo(ids.get(i));
-           HistoryInfo historyInfo = new HistoryInfo(listo, ids.get(i),orderBillInfo.getCreated_at(),orderBillInfo.getStatus());
+           HistoryInfo historyInfo = new HistoryInfo(listo, ids.get(i),orderBillInfo.getCreated_at(),orderBillInfo.getStatus(),orderBillInfo.getSum_money());
            list.add(historyInfo);
        }
        return list;

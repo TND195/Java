@@ -73,13 +73,14 @@
                                 </li>
                                 <li>Tên: ${cartLineInfo.dishInfo.name}</li>
                                 <li>Giá: <span class="price">
-                                        <fmt:formatNumber value="${cartLineInfo.dishInfo.price}" type="currency"/>
+                                         <fmt:formatNumber value="${cartLineInfo.dishInfo.price}" type = "number" maxFractionDigits = "3"/> VND
+                                        
                                     </span>
                                 </li>
                                 <li>số lượng: ${cartLineInfo.quantity}</li>
                                 <li>Tổng:
                                     <span class="subtotal">
-                                        <fmt:formatNumber value="${cartLineInfo.amount}" type="currency"/>
+                                          <fmt:formatNumber value="${cartLineInfo.amount}" type = "number" maxFractionDigits = "3"/> VND
                                     </span>
                                 </li>
                             </ul>

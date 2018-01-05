@@ -45,7 +45,8 @@
                                 <tr class="warning">
                                     <td>
                                 Ngày: ${listHistoryInfo.create_at} , Id:
-                                ${listHistoryInfo.id}, Trạng thái: Chưa thanh toán <c:if test="${listHistoryInfo.status != 0}" >Đã thanh toán</c:if> 
+                                ${listHistoryInfo.id},Tổng cộng:<fmt:formatNumber value="${listHistoryInfo.amount}" type = "number" 
+         maxFractionDigits = "3"/>VND, Trạng thái: Chưa thanh toán
                                 
                                     </td>
                                     </c:if> 
@@ -53,7 +54,8 @@
                                 <tr class="active">
                                     <td>
                                 Ngày: ${listHistoryInfo.create_at} , Id:
-                                ${listHistoryInfo.id}, Trạng thái: Đã thanh toán
+                                ${listHistoryInfo.id},,Tổng cộng:<fmt:formatNumber value="${listHistoryInfo.amount}" type = "number" 
+         maxFractionDigits = "3"/>VND, Trạng thái: Đã thanh toán
                                 
                                     </td>
                                     </c:if> 

@@ -17,14 +17,28 @@ public class HistoryInfo {
     private int id;
     private Date create_at;
     private int status;
+    private double amount;
     
 
-    public HistoryInfo(List<OrderDetailInfo> orderDetailInfos, int id, Date create_at,int status) {
+    public HistoryInfo(List<OrderDetailInfo> orderDetailInfos, int id, Date create_at,int status,double amount) {
         this.orderDetailInfos = orderDetailInfos;
         this.id = id;
         this.create_at = create_at;
         this.status = status;
+        this.amount = amount;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    
+
+ 
 
     public List<OrderDetailInfo> getOrderDetailInfos() {
         return orderDetailInfos;
