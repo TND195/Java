@@ -41,11 +41,22 @@
 
 
                             <tbody>
-                                <tr class="success">
+                                <c:if test="${listHistoryInfo.status == 0}" >
+                                <tr class="warning">
                                     <td>
                                 Ngày: ${listHistoryInfo.create_at} , Id:
-                                ${listHistoryInfo.id}
+                                ${listHistoryInfo.id}, Trạng thái: Chưa thanh toán <c:if test="${listHistoryInfo.status != 0}" >Đã thanh toán</c:if> 
+                                
                                     </td>
+                                    </c:if> 
+                                     <c:if test="${listHistoryInfo.status != 0}" >
+                                <tr class="active">
+                                    <td>
+                                Ngày: ${listHistoryInfo.create_at} , Id:
+                                ${listHistoryInfo.id}, Trạng thái: Đã thanh toán
+                                
+                                    </td>
+                                    </c:if> 
                                 </tr>
                                 <c:forEach items="${listHistoryInfo.orderDetailInfos}" var="orderDetailInfo" >
                                     <tr>

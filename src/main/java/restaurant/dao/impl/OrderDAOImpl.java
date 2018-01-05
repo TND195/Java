@@ -105,7 +105,7 @@ public class OrderDAOImpl implements OrderDAO {
         if (order == null) {
             return null;
         }
-        return new OrderBillInfo();
+        return new OrderBillInfo(order.getId(),order.getStatus(),order.getCreated_at());
     }
    
     

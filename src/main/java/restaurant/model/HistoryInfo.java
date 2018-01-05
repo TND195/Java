@@ -16,12 +16,14 @@ public class HistoryInfo {
     private List<OrderDetailInfo> orderDetailInfos;
     private int id;
     private Date create_at;
+    private int status;
     
 
-    public HistoryInfo(List<OrderDetailInfo> orderDetailInfos, int id, Date create_at) {
+    public HistoryInfo(List<OrderDetailInfo> orderDetailInfos, int id, Date create_at,int status) {
         this.orderDetailInfos = orderDetailInfos;
         this.id = id;
         this.create_at = create_at;
+        this.status = status;
     }
 
     public List<OrderDetailInfo> getOrderDetailInfos() {
@@ -30,6 +32,14 @@ public class HistoryInfo {
 
     public void setOrderDetailInfos(List<OrderDetailInfo> orderDetailInfos) {
         this.orderDetailInfos = orderDetailInfos;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     

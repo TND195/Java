@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import restaurant.dao.HistoryDAO;
+import restaurant.dao.OrderDAO;
 import restaurant.dao.OrderDetailDAO;
 import restaurant.model.HistoryInfo;
+import restaurant.model.OrderBillInfo;
 import restaurant.model.OrderDetailInfo;
 
 /**
@@ -21,13 +23,16 @@ public class HistoryDAOImpl implements HistoryDAO{
 
     @Autowired
     OrderDetailDAO orderDetailDAO;
-    
+    @Autowired 
+    OrderDAO orderDAO;
     public List<HistoryInfo> getListHistory(List<Integer> ids) {
        List<HistoryInfo> list = new ArrayList<HistoryInfo>();
        if (ids.size() !=0) {
        for(int i=0;i<ids.size();i++) {
+           
            List<OrderDetailInfo> listo = orderDetailDAO.getlist(ids.get(i));
-           HistoryInfo historyInfo = new HistoryInfo(listo, ids.get(i),listo.get(0).getCreated_at());
+           OrderBillInfo orderBillInfo = orderDAO.getOrderInfo(ids.get(i));
+           HistoryInfo historyInfo = new HistoryInfo(listo, ids.get(i),orderBillInfo.getCreated_at(),orderBillInfo.getStatus());
            list.add(historyInfo);
        }
        return list;

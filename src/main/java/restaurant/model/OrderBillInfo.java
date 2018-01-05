@@ -25,6 +25,12 @@ public class OrderBillInfo {
     public OrderBillInfo() {
     }
 
+    public OrderBillInfo(int id, int status, Date created_at) {
+        this.id = id;
+        this.status = status;
+        this.created_at = created_at;
+    }
+
     public OrderBillInfo( int customer_id, int status, int oder_type, double sum_money, Date created_at, List<OrderDetailInfo> details) {
         this.customer_id = customer_id;
         this.status = status;
