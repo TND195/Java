@@ -29,7 +29,7 @@
 
                     <!-- Table -->
                     <table class="table">
-                   
+
                         <tbody>
                             <c:forEach items="${listDish}" var="dishInfo">
                                 <tr>
@@ -42,7 +42,7 @@
                                             <li>Tên: ${dishInfo.name}</li>
                                             <li>Mô tả: ${dishInfo.description}</li>
                                             <li>Giá: <fmt:formatNumber value="${dishInfo.price}" type = "number" 
-         maxFractionDigits = "3"/> VND</li>
+                                                              maxFractionDigits = "3"/> VND</li>
                                             <li><a
                                                     href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
                                                     Mua ngay</a></li>
@@ -78,7 +78,7 @@
                                                                 <li>Tên: ${dishInfo.name}</li>
                                                                 <li>Mô tả: ${dishInfo.description}</li>
                                                                 <li>Giá: <fmt:formatNumber value="${dishInfo.price}" type = "number" 
-         maxFractionDigits = "3"/> VND</li>
+                                                                                  maxFractionDigits = "3"/> VND</li>
                                                                 <li><a
                                                                         href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
                                                                         Mua ngay</a></li>
@@ -97,17 +97,17 @@
                                                 <c:if test="${paginationDish.totalPages > 1}">
 
                                                     <c:forEach items="${paginationDish.navigationPages}" var = "page">
-                                                                <c:choose>
-                                                                    <c:when test="${page == param.page || (empty param.page && page ==1)}">
-                                                                        
-                                                                         <li class="page-item active">
-                                                                    </c:when>    
-                                                                    <c:otherwise>
-                                                                      <li class="page-item">
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                        
-                                                           <c:if test="${page != -1}">
+                                                        <c:choose>
+                                                            <c:when test="${page == param.page || (empty param.page && page ==1)}">
+
+                                                                <li class="page-item active">
+                                                                </c:when>    
+                                                                <c:otherwise>
+                                                                <li class="page-item">
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                            <c:if test="${page != -1}">
                                                                 <a href="?page=${page}" class="nav-item">${page}</a>
                                                             </c:if>
                                                             <c:if test="${page == -1 }">
@@ -115,7 +115,7 @@
                                                             </c:if>
                                                         </li>
                                                     </c:forEach>
-
+                                                   
 
                                                 </ul>
                                                 </div>
@@ -127,12 +127,24 @@
 
 
                                                 </div>
-                                            </c:if></td>
+                                                    
+                                            </c:if>
+                 <div  style="float: right">
+                                                        <div class="fb-like" data-href="https://www.facebook.com/&#x110;&#x1ed3;-&#x103;n-137279583619818/" 
+                                                            data-width="12" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" 
+                                                            data-share="true">
+                             
+                                                        </div> 
+                                                    </div></td>
                                     </tr>
                                 </tbody>
                             </table>
+                             
                         </div>
-                        <div class="fb-like" data-href="https://www.facebook.com/&#x110;&#x1ed3;-&#x103;n-137279583619818/" data-width="12" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>    
+                        <!--                        <div style="text-align: center"
+                                                     class="fb-like" data-href="https://www.facebook.com/&#x110;&#x1ed3;-&#x103;n-137279583619818/" 
+                                                     data-width="12" data-layout="box_count" data-action="like" data-size="large" data-show-faces="true" 
+                                                     data-share="true"></div>    -->
 
 
 

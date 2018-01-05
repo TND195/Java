@@ -14,7 +14,8 @@
     <body>
         <jsp:include page="_header.jsp" />
 
-
+<form method="POST"
+                      action="${pageContext.request.contextPath}/shoppingCartConfirmation">
         <div class="container">
             <div class="row">
                 <div class="panel panel-default">
@@ -52,7 +53,7 @@
                     </table>
                 </div>
 
-               
+                <input style="margin-bottom: 20px;" type="submit" value="Gửi" class="btn btn-primary" />
 
                  <div class="panel panel-default">
 	<!-- Default panel contents -->
@@ -92,8 +93,7 @@
 </table>
                  </div>
                                             
-                                             <form method="POST"
-                      action="${pageContext.request.contextPath}/shoppingCartConfirmation">
+                                             
 
                     <!-- Edit Cart -->
                     <a class="navi-item"
@@ -104,7 +104,7 @@
                        href="${pageContext.request.contextPath}/shoppingCartCustomer">Chỉnh sửa thông tin</a> | 
 
                     <!-- Send/Save -->
-                    <input type="submit" value="Gửi" class="btn btn-primary" />
+                   
                 </form>
                            <jsp:include page="_footer.jsp" />
             </div>

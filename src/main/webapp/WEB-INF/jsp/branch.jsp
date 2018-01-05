@@ -39,8 +39,8 @@
                                         <ul>
 
 
-                                            <li>Name: ${branchInfo.name}</li>  
-                                            <li>Code: ${branchInfo.address}</li>
+                                            <li>Tên chi nhánh: ${branchInfo.name}</li>  
+                                            <li>Địc chỉ: ${branchInfo.address}</li>
 
 
                                         </ul>

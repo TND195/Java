@@ -32,7 +32,7 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>Trang web bán đồ ăn online</td>
+                                <td style="text-align: center">Trang web bán đồ ăn online</td>
                             </tr>
                         </tbody></table>
                 </div>

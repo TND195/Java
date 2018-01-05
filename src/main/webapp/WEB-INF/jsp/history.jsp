@@ -33,7 +33,7 @@
                     <div class="panel-heading">Lịch sử mua hàng</div>
                     
                        <c:if test="${empty listHistory}">
-       <h2>Không có lịch sử mua hàng</h2>
+       <h2 style="text-align: center">Không có lịch sử mua hàng</h2>
    </c:if>
                      <c:if test="${not empty listHistory}">
                     <table class="table">
