@@ -44,7 +44,7 @@
          maxFractionDigits = "3"/> VND</li>
                                                         <li><a
                                                                 href="${pageContext.request.contextPath}/buyProduct?id=${dishInfo.id}">
-                                                                Buy Now</a></li>
+                                                                Mua ngay</a></li>
                                                     </ul>
                                                 </td>
 

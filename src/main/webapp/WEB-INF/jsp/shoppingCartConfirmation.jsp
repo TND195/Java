@@ -35,13 +35,13 @@
 
                                     </ul></td>
 </tr>
-
+<tr class="active">   <td>   Hóa đơn   </td>                          
+</tr>
 <tr>
                                 <td>
-                                   <div class="panel-heading">Hóa đơn</div>
                                     <ul>
-                                        <li>Quantity: ${myCart.quantityTotal}</li>
-                                        <li>Total:
+                                        <li>Số lượng: ${myCart.quantityTotal}</li>
+                                        <li>Tổng:
                                            
                                                 <fmt:formatNumber value="${myCart.amountTotal}" type = "number" maxFractionDigits = "3"/> VND
                                             </li>
@@ -68,16 +68,16 @@
                              <img class="product-image" style="width:170px;height:170px;margin-right:20px; float: left;"
                              src="${cartLineInfo.dishInfo.img_url}" />
                         <ul>
-                                <li>Code: ${cartLineInfo.dishInfo.id} <input
+                                <li>Mã: ${cartLineInfo.dishInfo.id} <input
                                         type="hidden" name="code" value="${cartLineInfo.dishInfo.id}" />
                                 </li>
-                                <li>Name: ${cartLineInfo.dishInfo.name}</li>
-                                <li>Price: <span class="price">
+                                <li>Tên: ${cartLineInfo.dishInfo.name}</li>
+                                <li>Giá: <span class="price">
                                         <fmt:formatNumber value="${cartLineInfo.dishInfo.price}" type="currency"/>
                                     </span>
                                 </li>
-                                <li>Quantity: ${cartLineInfo.quantity}</li>
-                                <li>Subtotal:
+                                <li>số lượng: ${cartLineInfo.quantity}</li>
+                                <li>Tổng:
                                     <span class="subtotal">
                                         <fmt:formatNumber value="${cartLineInfo.amount}" type="currency"/>
                                     </span>
@@ -96,11 +96,11 @@
 
                     <!-- Edit Cart -->
                     <a class="navi-item"
-                       href="${pageContext.request.contextPath}/shoppingCart">Chỉnh sửa giỏ hàng</a>
+                       href="${pageContext.request.contextPath}/shoppingCart">Chỉnh sửa giỏ hàng</a> |
 
                     <!-- Edit Customer Info -->
                     <a class="navi-item"
-                       href="${pageContext.request.contextPath}/shoppingCartCustomer">Chỉnh sửa thông tin</a>
+                       href="${pageContext.request.contextPath}/shoppingCartCustomer">Chỉnh sửa thông tin</a> | 
 
                     <!-- Send/Save -->
                     <input type="submit" value="Gửi" class="btn btn-primary" />
